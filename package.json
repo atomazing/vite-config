@@ -1,0 +1,56 @@
+{
+	"name": "@atomazing-org/vite-config",
+	"version": "0.0.9",
+	"description": "Vite config util for super-app microfrontentds",
+	"type": "module",
+	"files": [
+		"dist"
+	],
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./constants": {
+			"types": "./dist/constants.d.ts",
+			"import": "./dist/constants.js",
+			"default": "./dist/constants.js"
+		}
+	},
+	"scripts": {
+		"start": "node --experimental-strip-types src/index.ts",
+		"build": "tsup",
+		"deploy": "npm run build && npm publish",
+		"format": "npm run format:prettier",
+		"format:prettier": "npm run lint:prettier -- --write",
+		"lint": "npm run lint:prettier && npm run lint:ts",
+		"lint:prettier": "prettier \"**/*.{json,js,ts,tsx}\" --check --ignore-path ../../.prettierignore",
+		"lint:ts": "tsc --noEmit",
+		"clean": "rimraf dist node_modules",
+		"debug:prettier": "prettier \"./src/index.ts\" --loglevel debug --ignore-path ../../.prettierignore",
+		"debug:ts": "tsc --showConfig"
+	},
+	"dependencies": {
+		"colorette": "2.0.20",
+		"registry-auth-token": "5.0.3",
+		"tar": "7.4.3",
+		"ts-deepmerge": "7.0.2",
+		"valibot": "0.42.1",
+		"vite-plugin-externalize-dependencies": "1.0.1"
+	},
+	"peerDependencies": {
+		"vite": ">=6.0.5"
+	},
+	"devDependencies": {
+		"@atomazing-org/tsconfig": "*",
+		"@types/tar": "6.1.13",
+		"tsup": "8.3.5",
+		"vite": "6.0.5"
+	},
+	"packageManager": "npm@10.9.0",
+	"engines": {
+		"node": ">=22.11",
+		"npm": ">=10"
+	}
+}

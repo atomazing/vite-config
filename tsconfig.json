@@ -1,0 +1,4 @@
+{
+	"extends": "@atomazing-org/tsconfig/tsconfig.node.json",
+	"include": ["src"]
+}
