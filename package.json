@@ -46,6 +46,7 @@
 		"@atomazing-org/tsconfig": "*",
 		"@types/tar": "6.1.13",
 		"tsup": "8.3.5",
+		"typescript": "^5.8.3",
 		"vite": "6.0.5"
 	},
 	"packageManager": "npm@10.9.0",

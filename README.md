@@ -1,78 +1,76 @@
-# Timesheet
+# @atomazing/vite-config
 
-## Команда
+Reusable Vite configuration utility for Atomazing's microfrontend architecture in the Super App ecosystem.
 
-## Авторизация в Nexus
+## Features
 
-Добавьте следующие строки в ваш корневой файл .npmrc, чтобы аутентифицироваться в репозитории Nexus:
+- Simplified Vite configuration via `defineModuleConfig`
+- Support for host-module architecture
+- Shared constants for dependency management
+- Integration with TypeScript path mapping
+- Externalization of common dependencies like React
+- Built-in error boundaries for dynamic modules
 
-Для конкретных реестров:
-
-```bash
-//nexus.bpm.lanit/repository/npm-all/:_authToken=NpmToken.00000000-0000-0000-0000-000000000000
-//nexus.bpm.lanit/repository/npm-releases/:_authToken=NpmToken.00000000-0000-0000-0000-000000000000
-```
-
-Или для обоих реестров:
+## Installation
 
 ```bash
-//nexus.bpm.lanit/repository/:_authToken=NpmToken.00000000-0000-0000-0000-000000000000
+npm install @atomazing-org/vite-config --save-dev
 ```
 
-[Подробнее](https://wiki.bpm.lanit/pages/viewpage.action?pageId=110828117)
+## Usage
 
-## Требования
+In your `vite.config.ts` of a module:
 
-- `Node.js` - можно скачать его с [официального сайта](http://nodejs.org/en/), ставим версию _22.11.X и выше (LTS)_. Это потребуется для запуска сборщика. Можно проверить установленную версию, написав команду `node -v` в терминале \ консоли.
-- `npm` - он должен установиться вместе с Node.js . Потребуется для установки модулей и запуска скриптов. Можете проверить установленную версию, написав команду `npm -v` в терминале \ консоли.
-- `Git`
+```ts
+import { defineModuleConfig } from '@atomazing-org/vite-config'
+import react from '@vitejs/plugin-react'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
-## Установка
+export default defineModuleConfig({
+  moduleName: 'timesheet',
+  hostPackage: '@super-app/host@latest',
+  plugins: [
+    react(),
+    tsconfigPaths()
+  ],
+  preview: {
+    port: 3032
+  }
+})
+```
 
-1. Склонируйте (нужен _git_) или скачайте репозиторий:
+## Constants
+
+```ts
+import {
+  EXTERNAL_DEPS,
+  MODULE_ENTRYPOINT,
+  OUTPUT_MODULE_PREFIX,
+  DEV_DIR
+} from '@atomazing-org/vite-config/constants'
+```
+
+## Build
 
 ```bash
-git clone https://bitbucket.bpm.lanit/scm/kevin/super-app-module-timesheet.git
+npm install
+npm run build
 ```
 
-2. Перейдите в папку
+## Publish
+
+Make sure you are logged in to npm:
 
 ```bash
-cd super-app-module-timesheet
+npm login
 ```
 
-3. Установите зависимости через `npm`:
+Then:
 
 ```bash
-npm i
+npm run deploy
 ```
 
-## Запуск
+## License
 
-Пропишите в терминале \ консоле:
-
-```bash
-npm run dev
-```
-
-## Прочие команды
-
-Запуск проверки кода (eslint & prettier & ts):
-
-```bash
-npm run lint
-```
-
-Сборка Docker:
-
-```bash
-docker build -t super-app-module-timesheet .
-```
-
-Запуск Docker:
-
-```bash
-docker run -p 80:80 super-app-module-timesheet
-```
-
-Проверяем `curl -i http://localhost/index.js`
+MIT
