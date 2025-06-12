@@ -22,7 +22,8 @@
 		"registry": "https://registry.npmjs.org/"
 	},
 	"files": [
-		"dist"
+		"dist",
+		"README.md"
 	],
 	"exports": {
 		".": {
