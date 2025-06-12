@@ -3,6 +3,24 @@
 	"version": "0.0.10",
 	"description": "Vite config util for super-app microfrontentds",
 	"type": "module",
+	"license": "MIT",
+	"author": "whoisYeshua + MarkSinD",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/atomazing/vite-config"
+	},
+	"bugs": {
+		"url": "https://github.com/atomazing/vite-config"
+	},
+	"homepage": "https://github.com/atomazing/vite-config",
+	"keywords": [
+		"vite",
+		"atomazing"
+	],
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
+	},
 	"files": [
 		"dist"
 	],
@@ -40,14 +58,14 @@
 		"vite-plugin-externalize-dependencies": "1.0.1"
 	},
 	"peerDependencies": {
-		"vite": ">=6.0.5"
+		"vite": "6.3.4"
 	},
 	"devDependencies": {
 		"@atomazing-org/tsconfig": "*",
 		"@types/tar": "6.1.13",
 		"tsup": "8.3.5",
 		"typescript": "^5.8.3",
-		"vite": "6.0.5"
+		"vite": "6.3.4"
 	},
 	"packageManager": "npm@10.9.0",
 	"engines": {
