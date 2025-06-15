@@ -1,6 +1,6 @@
 {
 	"name": "@atomazing-org/vite-config",
-	"version": "0.0.14",
+	"version": "0.0.17",
 	"description": "Vite config util for super-app microfrontentds",
 	"type": "module",
 	"license": "MIT",
