@@ -4,10 +4,9 @@ import externalize from 'vite-plugin-externalize-dependencies'
 
 import { installer } from '../installer/index.ts'
 import { createEntrypointPlugin } from '../plugins/index.ts'
-import { DEV_DIR, EXTERNAL_DEPS, OUTPUT_MODULE_PREFIX } from '../constants.ts'
+import { DEV_DIR, EXTERNAL_DEPS, MODULE_ENTRYPOINT, OUTPUT_MODULE_PREFIX } from '../constants.ts'
 
 import { validateModuleConfig, type ModuleConfig } from './validateModuleConfig.ts'
-import {MODULE_ENTRYPOINT} from "../build-constants.ts";
 
 const getDevConfig = (_config: ModuleConfig) =>
 	({
