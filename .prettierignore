@@ -1,8 +1,10 @@
 # dependencies
 node_modules
+package-lock.json
 
 # build
 dist
+public
 
 # code editors
 .idea
@@ -11,6 +13,5 @@ dist
 # misc
 .DS_Store
 .turbo
-coverage
-test-report.xml
 eslint-output-config*.json
+*.hbs

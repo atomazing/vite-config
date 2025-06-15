@@ -1,4 +1,4 @@
-# @atomazing/vite-config
+# @atomazing-org/vite-config
 
 Reusable Vite configuration utility for Atomazing's microfrontend architecture in the Super App ecosystem.
 
@@ -27,15 +27,12 @@ import react from '@vitejs/plugin-react'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineModuleConfig({
-  moduleName: 'timesheet',
-  hostPackage: '@super-app/host@latest',
-  plugins: [
-    react(),
-    tsconfigPaths()
-  ],
-  preview: {
-    port: 3032
-  }
+	moduleName: 'timesheet',
+	hostPackage: '@super-app/host@latest',
+	plugins: [react(), tsconfigPaths()],
+	preview: {
+		port: 3032,
+	},
 })
 ```
 
@@ -43,10 +40,10 @@ export default defineModuleConfig({
 
 ```ts
 import {
-  EXTERNAL_DEPS,
-  MODULE_ENTRYPOINT,
-  OUTPUT_MODULE_PREFIX,
-  DEV_DIR
+	EXTERNAL_DEPS,
+	MODULE_ENTRYPOINT,
+	OUTPUT_MODULE_PREFIX,
+	DEV_DIR,
 } from '@atomazing-org/vite-config/constants'
 ```
 

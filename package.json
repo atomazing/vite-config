@@ -1,26 +1,10 @@
 {
 	"name": "@atomazing-org/vite-config",
-	"version": "0.0.17",
+	"version": "0.0.22",
 	"description": "Vite config util for super-app microfrontentds",
 	"type": "module",
 	"license": "MIT",
 	"author": "whoisYeshua + MarkSinD",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/atomazing/vite-config"
-	},
-	"bugs": {
-		"url": "https://github.com/atomazing/vite-config"
-	},
-	"homepage": "https://github.com/atomazing/vite-config",
-	"keywords": [
-		"vite",
-		"atomazing"
-	],
-	"publishConfig": {
-		"access": "public",
-		"registry": "https://registry.npmjs.org/"
-	},
 	"files": [
 		"dist",
 		"README.md"
@@ -44,33 +28,53 @@
 		"format": "npm run format:prettier",
 		"format:prettier": "npm run lint:prettier -- --write",
 		"lint": "npm run lint:prettier && npm run lint:ts",
-		"lint:prettier": "prettier \"**/*.{json,js,ts,tsx}\" --check --ignore-path ../../.prettierignore",
+		"lint:prettier": "prettier \"**/*.{json,js,ts,tsx}\" --check",
 		"lint:ts": "tsc --noEmit",
 		"clean": "rimraf dist node_modules",
-		"debug:prettier": "prettier \"./src/index.ts\" --loglevel debug --ignore-path ../../.prettierignore",
+		"debug:prettier": "prettier \"./src/index.ts\" --loglevel debug",
 		"debug:ts": "tsc --showConfig"
 	},
 	"dependencies": {
 		"colorette": "2.0.20",
-		"registry-auth-token": "5.0.3",
+		"registry-auth-token": "5.1.0",
 		"tar": "7.4.3",
-		"ts-deepmerge": "7.0.2",
-		"valibot": "0.42.1",
+		"ts-deepmerge": "7.0.3",
+		"valibot": "1.1.0",
 		"vite-plugin-externalize-dependencies": "1.0.1"
 	},
 	"peerDependencies": {
-		"vite": "6.3.4"
+		"vite": ">=6.3.5"
 	},
 	"devDependencies": {
 		"@atomazing-org/tsconfig": "*",
 		"@types/tar": "6.1.13",
-		"tsup": "8.3.5",
-		"typescript": "^5.8.3",
-		"vite": "6.3.4"
+		"husky": "9.1.7",
+		"lint-staged": "16.1.2",
+		"prettier": "3.5.3",
+		"rimraf": "6.0.1",
+		"tsup": "8.5.0",
+		"typescript": "5.8.3",
+		"vite": "6.3.5"
 	},
 	"packageManager": "npm@10.9.0",
 	"engines": {
 		"node": ">=22.11",
 		"npm": ">=10"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/atomazing/vite-config.git"
+	},
+	"bugs": {
+		"url": "https://github.com/atomazing/vite-config"
+	},
+	"homepage": "https://github.com/atomazing/vite-config",
+	"keywords": [
+		"vite",
+		"atomazing"
+	],
+	"publishConfig": {
+		"access": "public",
+		"registry": "https://registry.npmjs.org/"
 	}
 }

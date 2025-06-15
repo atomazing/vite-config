@@ -7,6 +7,8 @@ const packageDistSchema = v.object({
 	integrity: v.string(),
 	shasum: v.string(),
 	tarball: v.string(),
+	fileCount: v.number(),
+	unpackedSize: v.number(),
 })
 
 const execAsync = promisify(exec)

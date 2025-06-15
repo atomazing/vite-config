@@ -22,7 +22,7 @@ export interface ModuleConfig {
 
 	/**
 	 * Optional custom NPM registry URL for fetching the host module.
-	 * @default 'https://nexus.bpm.lanit/repository/npm-releases/'
+	 * @default 'https://registry.npmjs.org/'
 	 * @example 'https://registry.npmjs.org/'
 	 */
 	npmRegistryUrl?: string
