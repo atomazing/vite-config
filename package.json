@@ -1,6 +1,6 @@
 {
 	"name": "@atomazing-org/vite-config",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"private": false,
 	"description": "A library providing a vite configuration with including PWA and MF supports.",
 	"author": "RatzNikita + MarkSinD",
@@ -59,7 +59,8 @@
 		"vite-plugin-qrcode": "^0.3.0",
 		"vite-tsconfig-paths": "^5.1.4",
 		"workbox-build": "^7.3.0",
-		"workbox-window": "^7.3.0"
+		"workbox-window": "^7.3.0",
+		"@lingui/babel-plugin-lingui-macro": "^5.3.3"
 	},
 	"prettier": {
 		"useTabs": true,
