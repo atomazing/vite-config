@@ -10,7 +10,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import checker from 'vite-plugin-checker'
 import { findTsModule } from './helpers'
 import { ModuleFederationOptions } from '@module-federation/vite/lib/utils/normalizeModuleFederationOptions'
-import lingui from '@lingui/vite-plugin'
+import { lingui } from '@lingui/vite-plugin'
 
 type Args = {
 	enableDevPwa?: boolean
