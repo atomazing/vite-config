@@ -2,10 +2,9 @@
 
 1. [Introduction](#1-introduction)
 2. [Installation](#2-installation)
-3. [Usage](#3-usage)  
-  
-## 1. Introduction
+3. [Usage](#3-usage)
 
+## 1. Introduction
 
 ### 🔧 What’s Included
 
@@ -39,13 +38,74 @@ pnpm add @atomazing-org/vite-config
 
 ### Vite config
 
-After installing the package, you can create a `manifest.ts` required for PWA to work.
+After installing the package, a `vite.config.ts` file will be created in the root directory if it did not exist before. If you already have a `vite.config.ts` file, add the following to it:
+
+```ts
+import { createViteConfig } from '@atomazing-org/vite-config'
+
+// https://vitejs.dev/config/
+export default createViteConfig({
+	moduleFederationOptions: {
+		name: '{appName}',
+	},
+})
+```
+
+createViteConfig options
+
+```ts
+enableDevPwa, // Enable to test PWA functionality in dev, but it may slow down HMR.
+enableHttps, // Enable https necessary for work PWA on dev
+moduleFederationOptions,
+port,
+```
+
+
+You can create a `manifest.ts` required for PWA to work with command:
 
 ```bash
 # npm
 npx @atomazing-org/vite-config create-manifest
 ```
-You can also create your own `workbox.config.ts`  or the default one will be used.
+
+You can also create your own `workbox.config.ts` or the default one will be used.
+
+### Module Federation
+
+
+If you want to use your application as a host, you will need to specify name and remotes modules. For example:
+
+```ts
+export default createViteConfig({
+	moduleFederationOptions: {
+		name: 'host',
+		remotes: {
+			remote: {
+				type: 'module',
+				name: 'remoteModule',
+				entry: 'https://[...]/remoteEntry.js',
+			},
+			shared: [...librariesToShare],
+		},
+	},
+})
+```
+If you want to use your application as a remote module, you will need to specify name and exposes components. For example:
+
+```ts
+export default createViteConfig({
+	moduleFederationOptions: {
+		name: 'remote',
+		exposes: {
+				'./mount': './src/mount.tsx',
+			},
+	},
+})
+```
+
+By default, `shared` are already set for `react` and `react-dom`.
+Filename by default is `remoteEntry.js`
+
 
 ### Typescript config
 
@@ -54,4 +114,3 @@ After installing the package, a `tsconfig.json` file will be created in the root
 ```ts
 	"extends": "@atomazing-org/vite-config/configs/tsconfig.json",
 ```
-

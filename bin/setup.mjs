@@ -1,23 +1,29 @@
 import fs from 'fs'
 import path from 'path'
-import { fileURLToPath } from 'url'
 
-// Получаем текущий путь модуля
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-
-const targetConfig = path.resolve(process.cwd(), '../../../tsconfig.json')
+const tsConfigTarget = path.resolve(process.cwd(), '../../../tsconfig.json')
+const viteConfigTarget = path.resolve(process.cwd(),'../../../vite.config.ts')
 
 try {
-	// Проверяем существование целевого конфига
-	if (!fs.existsSync(targetConfig)) {
+	if (!fs.existsSync(tsConfigTarget)) {
 		const configContent = `{
 		"extends": "@atomazing-org/vite-config/configs/tsconfig.json",
 	}`
-		fs.writeFileSync(targetConfig, configContent)
+		fs.writeFileSync(tsConfigTarget, configContent)
+	}
+	if (!fs.existsSync(viteConfigTarget)) {
+		const configContent = `import { createViteConfig } from '@atomazing-org/vite-config'
+
+// https://vitejs.dev/config/
+export default createViteConfig({
+	moduleFederationOptions: {
+		name: 'app',
+	},
+})`
+		fs.writeFileSync(viteConfigTarget, configContent)
 	}
 } catch (error) {
-	console.error('❌ Ошибка при установке tsconfig.json:')
+	console.error('❌ Error installing configs:')
 	console.error(error.message)
 	process.exit(2)
 }

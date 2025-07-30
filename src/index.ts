@@ -10,12 +10,13 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import checker from 'vite-plugin-checker'
 import { findTsModule } from './helpers'
 import { ModuleFederationOptions } from '@module-federation/vite/lib/utils/normalizeModuleFederationOptions'
-
+import lingui from '@lingui/vite-plugin'
 
 type Args = {
 	enableDevPwa?: boolean
 	enableHttps?: boolean
 	moduleFederationOptions?: Partial<ModuleFederationOptions> & Pick<ModuleFederationOptions, 'name'>
+	port?: number
 }
 
 // https://vitejs.dev/config/
@@ -23,6 +24,7 @@ export async function createViteConfig({
 	enableDevPwa = false,
 	enableHttps = false,
 	moduleFederationOptions,
+	port = 3000,
 }: Args) {
 	const manifest = await findTsModule('manifest.ts')
 	const workboxConfig = await findTsModule('workbox.config.ts')
@@ -57,7 +59,7 @@ export async function createViteConfig({
 		plugins.push(
 			federation({
 				filename: 'remoteEntry.js',
-				shared: ['react', 'react-dom'],
+				shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
 				...moduleFederationOptions,
 			}),
 		)
@@ -71,7 +73,7 @@ export async function createViteConfig({
 
 	return defineConfig({
 		server: {
-			port: 3000,
+			port,
 		},
 		test: {
 			globals: true,
@@ -84,6 +86,7 @@ export async function createViteConfig({
 					plugins: ['@emotion/babel-plugin', '@lingui/babel-plugin-lingui-macro'],
 				},
 			}),
+			lingui(),
 			tsconfigPaths(),
 			// Generate QR code for npm run dev:host
 			qrcode({
@@ -106,16 +109,6 @@ export async function createViteConfig({
 						return
 					}
 					warn(warning)
-				},
-				output: {
-					manualChunks(id) {
-						if (id.includes('node_modules')) {
-							if (id.includes('@mui') || id.includes('@emotion')) {
-								return 'ui-lib'
-							}
-							return 'vendor' // other node_modules
-						}
-					},
 				},
 			},
 		},
