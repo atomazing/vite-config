@@ -1,7 +1,7 @@
 import { defineConfig } from 'tsup'
 import type { Plugin } from 'esbuild'
 
-// Permissions setting Plugin (needed for MacOS & Linux)
+// Permissions setting Plugin (needed for macOS & Linux)
 const executablePlugin = (): Plugin => ({
 	name: 'make-executable',
 	setup(build) {
@@ -17,13 +17,12 @@ export default defineConfig([
 	{
 		entry: ['src/index.ts'], // entry point
 		outDir: 'dist', // output directory
-		publicDir: 'configs', // public assets directory
-		format: ['esm'], // output formats (ES Modules)
+		format: ['esm','cjs'], // output formats (ES Modules)
 		dts: true, // generate *.d.ts type declarations
 		minify: true, // minify output
 		clean: true, // clean output directory before build
 		sourcemap: true, // generate sourcemaps (useful for debugging)
-		target: 'esnext', // JavaScript target (supports modern features like async/await)
+		target: 'es2018', // JavaScript target (supports modern features like async/await)
 		skipNodeModulesBundle: true,
 		esbuildPlugins: [executablePlugin()],
 	},
