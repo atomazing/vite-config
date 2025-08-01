@@ -9,29 +9,32 @@ importers:
   .:
     dependencies:
       '@inquirer/prompts':
-        specifier: ^7.7.1
+        specifier: ^7.8.0
         version: 7.8.0(@types/node@24.1.0)
       '@lingui/babel-plugin-lingui-macro':
         specifier: ^5.3.3
-        version: 5.3.3(typescript@5.8.3)
+        version: 5.3.3(typescript@5.9.2)
       '@lingui/vite-plugin':
-        specifier: ^5.3.2
-        version: 5.3.3(typescript@5.8.3)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
+        specifier: ^5.3.3
+        version: 5.3.3(typescript@5.9.2)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
       '@module-federation/vite':
-        specifier: ^1.6.0
+        specifier: ^1.7.1
         version: 1.7.1(rollup@2.79.2)
       '@vitejs/plugin-basic-ssl':
         specifier: ^2.1.0
         version: 2.1.0(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
       '@vitejs/plugin-react':
-        specifier: ^4.6.0
+        specifier: ^4.7.0
         version: 4.7.0(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
+      esbuild:
+        specifier: ^0.25.8
+        version: 0.25.8
       vite:
-        specifier: ^7.0.5
+        specifier: ^7.0.6
         version: 7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)
       vite-plugin-checker:
-        specifier: ^0.10.0
-        version: 0.10.2(typescript@5.8.3)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
+        specifier: ^0.10.2
+        version: 0.10.2(typescript@5.9.2)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
       vite-plugin-pwa:
         specifier: ^1.0.2
         version: 1.0.2(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))(workbox-build@7.3.0(@types/babel__core@7.20.5))(workbox-window@7.3.0)
@@ -40,7 +43,7 @@ importers:
         version: 0.3.0(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
       vite-tsconfig-paths:
         specifier: ^5.1.4
-        version: 5.1.4(typescript@5.8.3)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
+        version: 5.1.4(typescript@5.9.2)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))
       workbox-build:
         specifier: ^7.3.0
         version: 7.3.0(@types/babel__core@7.20.5)
@@ -56,10 +59,10 @@ importers:
         version: 3.6.2
       tsup:
         specifier: ^8.5.0
-        version: 8.5.0(jiti@1.21.7)(postcss@8.5.6)(typescript@5.8.3)
+        version: 8.5.0(jiti@1.21.7)(postcss@8.5.6)(typescript@5.9.2)
       typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^5.9.2
+        version: 5.9.2
       vitest:
         specifier: ^3.2.4
         version: 3.2.4(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)
@@ -1135,8 +1138,8 @@ packages:
   '@types/babel__template@7.4.4':
     resolution: {integrity: sha512-h/NUaSyG5EyxBIp8YRxo4RMe2/qQgvyowRwVMzhYhBCONbW8PUsg4lkFMrhgZhUe5z3L3MiLDuvyJ/CaPa2A8A==}
 
-  '@types/babel__traverse@7.20.7':
-    resolution: {integrity: sha512-dkO5fhS7+/oos4ciWxyEyjWe48zmG6wbCheo/G2ZnHx4fs3EU6YC6UM8rk56gAjNJ9P3MTH2jo5jb92/K6wbng==}
+  '@types/babel__traverse@7.28.0':
+    resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
   '@types/chai@5.2.2':
     resolution: {integrity: sha512-8kB30R7Hwqf40JPiKhVzodJs2Qc1ZJ5zuT3uzw5Hq/dhNCl3G3l83jfpdI1e20BP348+fV7VIL/+FxaXkqBmWg==}
@@ -1526,8 +1529,8 @@ packages:
     engines: {node: '>=0.10.0'}
     hasBin: true
 
-  electron-to-chromium@1.5.193:
-    resolution: {integrity: sha512-eePuBZXM9OVCwfYUhd2OzESeNGnWmLyeu0XAEjf7xjijNjHFdeJSzuRUGN4ueT2tEYo5YqjHramKEFxz67p3XA==}
+  electron-to-chromium@1.5.194:
+    resolution: {integrity: sha512-SdnWJwSUot04UR51I2oPD8kuP2VI37/CADR1OHsFOUzZIvfWJBO6q11k5P/uKNyTT3cdOsnyjkrZ+DDShqYqJA==}
 
   emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -2594,8 +2597,8 @@ packages:
     resolution: {integrity: sha512-3KS2b+kL7fsuk/eJZ7EQdnEmQoaho/r6KUef7hxvltNA5DR8NAUM+8wJMbJyZ4G9/7i3v5zPBIMN5aybAh2/Jg==}
     engines: {node: '>= 0.4'}
 
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
+  typescript@5.9.2:
+    resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3813,19 +3816,19 @@ snapshots:
 
   '@lingui/babel-plugin-extract-messages@5.3.3': {}
 
-  '@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.8.3)':
+  '@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.9.2)':
     dependencies:
       '@babel/core': 7.28.0
       '@babel/runtime': 7.28.2
       '@babel/types': 7.28.2
-      '@lingui/conf': 5.3.3(typescript@5.8.3)
-      '@lingui/core': 5.3.3(@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.8.3))
+      '@lingui/conf': 5.3.3(typescript@5.9.2)
+      '@lingui/core': 5.3.3(@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.9.2))
       '@lingui/message-utils': 5.3.3
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  '@lingui/cli@5.3.3(typescript@5.8.3)':
+  '@lingui/cli@5.3.3(typescript@5.9.2)':
     dependencies:
       '@babel/core': 7.28.0
       '@babel/generator': 7.28.0
@@ -3833,10 +3836,10 @@ snapshots:
       '@babel/runtime': 7.28.2
       '@babel/types': 7.28.2
       '@lingui/babel-plugin-extract-messages': 5.3.3
-      '@lingui/babel-plugin-lingui-macro': 5.3.3(typescript@5.8.3)
-      '@lingui/conf': 5.3.3(typescript@5.8.3)
-      '@lingui/core': 5.3.3(@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.8.3))
-      '@lingui/format-po': 5.3.3(typescript@5.8.3)
+      '@lingui/babel-plugin-lingui-macro': 5.3.3(typescript@5.9.2)
+      '@lingui/conf': 5.3.3(typescript@5.9.2)
+      '@lingui/core': 5.3.3(@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.9.2))
+      '@lingui/format-po': 5.3.3(typescript@5.9.2)
       '@lingui/message-utils': 5.3.3
       chokidar: 3.5.1
       cli-table: 0.3.11
@@ -3857,26 +3860,26 @@ snapshots:
       - supports-color
       - typescript
 
-  '@lingui/conf@5.3.3(typescript@5.8.3)':
+  '@lingui/conf@5.3.3(typescript@5.9.2)':
     dependencies:
       '@babel/runtime': 7.28.2
-      cosmiconfig: 8.3.6(typescript@5.8.3)
+      cosmiconfig: 8.3.6(typescript@5.9.2)
       jest-validate: 29.7.0
       jiti: 1.21.7
       picocolors: 1.1.1
     transitivePeerDependencies:
       - typescript
 
-  '@lingui/core@5.3.3(@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.8.3))':
+  '@lingui/core@5.3.3(@lingui/babel-plugin-lingui-macro@5.3.3(typescript@5.9.2))':
     dependencies:
       '@babel/runtime': 7.28.2
       '@lingui/message-utils': 5.3.3
     optionalDependencies:
-      '@lingui/babel-plugin-lingui-macro': 5.3.3(typescript@5.8.3)
+      '@lingui/babel-plugin-lingui-macro': 5.3.3(typescript@5.9.2)
 
-  '@lingui/format-po@5.3.3(typescript@5.8.3)':
+  '@lingui/format-po@5.3.3(typescript@5.9.2)':
     dependencies:
-      '@lingui/conf': 5.3.3(typescript@5.8.3)
+      '@lingui/conf': 5.3.3(typescript@5.9.2)
       '@lingui/message-utils': 5.3.3
       date-fns: 3.6.0
       pofile: 1.1.4
@@ -3888,10 +3891,10 @@ snapshots:
       '@messageformat/parser': 5.1.1
       js-sha256: 0.10.1
 
-  '@lingui/vite-plugin@5.3.3(typescript@5.8.3)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))':
+  '@lingui/vite-plugin@5.3.3(typescript@5.9.2)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))':
     dependencies:
-      '@lingui/cli': 5.3.3(typescript@5.8.3)
-      '@lingui/conf': 5.3.3(typescript@5.8.3)
+      '@lingui/cli': 5.3.3(typescript@5.9.2)
+      '@lingui/conf': 5.3.3(typescript@5.9.2)
       vite: 7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)
     transitivePeerDependencies:
       - babel-plugin-macros
@@ -4058,7 +4061,7 @@ snapshots:
       '@babel/types': 7.28.2
       '@types/babel__generator': 7.27.0
       '@types/babel__template': 7.4.4
-      '@types/babel__traverse': 7.20.7
+      '@types/babel__traverse': 7.28.0
 
   '@types/babel__generator@7.27.0':
     dependencies:
@@ -4069,7 +4072,7 @@ snapshots:
       '@babel/parser': 7.28.0
       '@babel/types': 7.28.2
 
-  '@types/babel__traverse@7.20.7':
+  '@types/babel__traverse@7.28.0':
     dependencies:
       '@babel/types': 7.28.2
 
@@ -4278,7 +4281,7 @@ snapshots:
   browserslist@4.25.1:
     dependencies:
       caniuse-lite: 1.0.30001731
-      electron-to-chromium: 1.5.193
+      electron-to-chromium: 1.5.194
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.1)
 
@@ -4394,14 +4397,14 @@ snapshots:
     dependencies:
       browserslist: 4.25.1
 
-  cosmiconfig@8.3.6(typescript@5.8.3):
+  cosmiconfig@8.3.6(typescript@5.9.2):
     dependencies:
       import-fresh: 3.3.1
       js-yaml: 4.1.0
       parse-json: 5.2.0
       path-type: 4.0.0
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   cross-spawn@7.0.6:
     dependencies:
@@ -4469,7 +4472,7 @@ snapshots:
     dependencies:
       jake: 10.9.2
 
-  electron-to-chromium@1.5.193: {}
+  electron-to-chromium@1.5.194: {}
 
   emoji-regex@8.0.0: {}
 
@@ -5577,11 +5580,11 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tsconfck@3.1.6(typescript@5.8.3):
+  tsconfck@3.1.6(typescript@5.9.2):
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
 
-  tsup@8.5.0(jiti@1.21.7)(postcss@8.5.6)(typescript@5.8.3):
+  tsup@8.5.0(jiti@1.21.7)(postcss@8.5.6)(typescript@5.9.2):
     dependencies:
       bundle-require: 5.1.0(esbuild@0.25.8)
       cac: 6.7.14
@@ -5602,7 +5605,7 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.6
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - jiti
       - supports-color
@@ -5646,7 +5649,7 @@ snapshots:
       possible-typed-array-names: 1.1.0
       reflect.getprototypeof: 1.0.10
 
-  typescript@5.8.3: {}
+  typescript@5.9.2: {}
 
   ufo@1.6.1: {}
 
@@ -5709,7 +5712,7 @@ snapshots:
       - tsx
       - yaml
 
-  vite-plugin-checker@0.10.2(typescript@5.8.3)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)):
+  vite-plugin-checker@0.10.2(typescript@5.9.2)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)):
     dependencies:
       '@babel/code-frame': 7.27.1
       chokidar: 4.0.3
@@ -5722,7 +5725,7 @@ snapshots:
       vite: 7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)
       vscode-uri: 3.1.0
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   vite-plugin-pwa@1.0.2(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1))(workbox-build@7.3.0(@types/babel__core@7.20.5))(workbox-window@7.3.0):
     dependencies:
@@ -5740,11 +5743,11 @@ snapshots:
       qrcode-terminal: 0.12.0
       vite: 7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)
 
-  vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)):
+  vite-tsconfig-paths@5.1.4(typescript@5.9.2)(vite@7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)):
     dependencies:
       debug: 4.4.1
       globrex: 0.1.2
-      tsconfck: 3.1.6(typescript@5.8.3)
+      tsconfck: 3.1.6(typescript@5.9.2)
     optionalDependencies:
       vite: 7.0.6(@types/node@24.1.0)(jiti@1.21.7)(terser@5.43.1)
     transitivePeerDependencies:
