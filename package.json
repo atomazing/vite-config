@@ -1,6 +1,6 @@
 {
 	"name": "@atomazing-org/vite-config",
-	"version": "0.1.7",
+	"version": "0.1.9",
 	"private": false,
 	"description": "A library providing a vite configuration with including PWA and MF supports.",
 	"author": "RatzNikita + MarkSinD",
@@ -21,9 +21,13 @@
 			"import": "./dist/index.mjs",
 			"require": "./dist/index.js"
 		},
-		"./configs/tsconfig.json": "./configs/tsconfig.json"
+		"./configs/tsconfig.json": "./configs/tsconfig.json",
+		"./registerSW": {
+      "types": "./registerSW.d.ts"
+    }
 	},
 	"files": [
+		"*.d.ts",
 		"dist",
 		"configs",
 		"README.md"

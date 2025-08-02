@@ -5,9 +5,8 @@
     "moduleResolution": "node",
     "lib": [
       "ESNext",
-      "DOM"
+      "WebWorker",
     ],
-    "jsx": "react-jsx",
     "declaration": true,
     "declarationDir": "./dist",
     "emitDeclarationOnly": true,
