@@ -16,6 +16,7 @@ type Args = {
 	enableDevPwa?: boolean
 	enableHttps?: boolean
 	moduleFederationOptions?: Partial<ModuleFederationOptions> & Pick<ModuleFederationOptions, 'name'>
+	enableI8n?: boolean
 	port?: number
 }
 
@@ -23,6 +24,7 @@ type Args = {
 export async function createViteConfig({
 	enableDevPwa = false,
 	enableHttps = false,
+	enableI8n = false,
 	moduleFederationOptions,
 	port = 3000,
 }: Args) {
@@ -71,6 +73,11 @@ export async function createViteConfig({
 		console.log('🛠️ @vitejs/plugin-basic-ssl is connected ')
 	}
 
+	if (enableI8n) {
+		plugins.push(lingui())
+		console.log('🛠️ @lingui/vite-plugin is connected ')
+	}
+
 	return defineConfig({
 		server: {
 			port,
@@ -86,7 +93,6 @@ export async function createViteConfig({
 					plugins: ['@emotion/babel-plugin', '@lingui/babel-plugin-lingui-macro'],
 				},
 			}),
-			lingui(),
 			tsconfigPaths(),
 			// Generate QR code for npm run dev:host
 			qrcode({
