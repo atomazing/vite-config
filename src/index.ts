@@ -32,6 +32,7 @@ export async function createViteConfig({
 
 	const { plugins: userPlugins, build, ...restUserConfig } = userConfig
 	const plugins: PluginOption[] = []
+	const babelPlugins: string[] = ['@emotion/babel-plugin']
 
 	if (manifest) {
 		console.log('🔧 Detected manifest.ts')
@@ -49,7 +50,7 @@ export async function createViteConfig({
 				},
 
 				manifest,
-				registerType: 'prompt',
+				registerType: 'autoUpdate',
 				workbox: workboxConfig ? workboxConfig : defaultWorkboxConfig,
 				includeAssets: ['**/*', 'sw.js'],
 			}),
@@ -62,7 +63,6 @@ export async function createViteConfig({
 				}),
 			)
 		}
-
 		console.log('🛠️ vite-plugin-pwa is connected')
 	}
 
@@ -83,6 +83,7 @@ export async function createViteConfig({
 	}
 
 	if (enableI8n) {
+		babelPlugins.push('@lingui/babel-plugin-lingui-macro')
 		plugins.push(lingui())
 		console.log('🛠️ @lingui/vite-plugin is connected ')
 	}
@@ -96,7 +97,7 @@ export async function createViteConfig({
 			react({
 				jsxImportSource: '@emotion/react',
 				babel: {
-					plugins: ['@emotion/babel-plugin', '@lingui/babel-plugin-lingui-macro'],
+					plugins: babelPlugins,
 				},
 			}),
 			tsconfigPaths(),
