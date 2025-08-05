@@ -1,6 +1,6 @@
 {
 	"name": "@atomazing-org/vite-config",
-	"version": "0.1.9",
+	"version": "0.2.0",
 	"private": false,
 	"description": "A library providing a vite configuration with including PWA and MF supports.",
 	"author": "RatzNikita + MarkSinD",
@@ -23,8 +23,8 @@
 		},
 		"./configs/tsconfig.json": "./configs/tsconfig.json",
 		"./registerSW": {
-      "types": "./registerSW.d.ts"
-    }
+			"types": "./registerSW.d.ts"
+		}
 	},
 	"files": [
 		"*.d.ts",
@@ -43,6 +43,10 @@
 		"build": "tsup",
 		"prepublishOnly": "npm run build",
 		"postinstall": "node ./dist/bin/setup.mjs"
+	},
+	"peerDependencies": {
+		"workbox-build": "^7.3.0",
+		"workbox-window": "^7.3.0"
 	},
 	"devDependencies": {
 		"@types/node": "^24.1.0",

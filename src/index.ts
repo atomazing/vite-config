@@ -1,5 +1,5 @@
 /// <reference types="vitest" />
-import { defineConfig, PluginOption } from 'vite'
+import { defineConfig, PluginOption, UserConfig } from 'vite'
 import { federation } from '@module-federation/vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
@@ -17,8 +17,7 @@ type Args = {
 	enableHttps?: boolean
 	moduleFederationOptions?: Partial<ModuleFederationOptions> & Pick<ModuleFederationOptions, 'name'>
 	enableI8n?: boolean
-	port?: number
-}
+} & UserConfig
 
 // https://vitejs.dev/config/
 export async function createViteConfig({
@@ -26,11 +25,12 @@ export async function createViteConfig({
 	enableHttps = false,
 	enableI8n = false,
 	moduleFederationOptions,
-	port = 3000,
+	...userConfig
 }: Args) {
 	const manifest = await findTsModule('manifest.ts')
 	const workboxConfig = await findTsModule('workbox.config.ts')
 
+	const { plugins: userPlugins, build, ...restUserConfig } = userConfig
 	const plugins: PluginOption[] = []
 
 	if (manifest) {
@@ -54,6 +54,15 @@ export async function createViteConfig({
 				includeAssets: ['**/*', 'sw.js'],
 			}),
 		)
+		if (enableDevPwa) {
+			plugins.push(
+				qrcode({
+					filter: url =>
+						url.startsWith('http://192.168.0.') || url.startsWith('https://192.168.0.'),
+				}),
+			)
+		}
+
 		console.log('🛠️ vite-plugin-pwa is connected')
 	}
 
@@ -79,9 +88,6 @@ export async function createViteConfig({
 	}
 
 	return defineConfig({
-		server: {
-			port,
-		},
 		test: {
 			globals: true,
 		},
@@ -94,13 +100,10 @@ export async function createViteConfig({
 				},
 			}),
 			tsconfigPaths(),
-			// Generate QR code for npm run dev:host
-			qrcode({
-				filter: url => url.startsWith('http://192.168.0.') || url.startsWith('https://192.168.0.'),
-			}),
 			checker({
 				typescript: true,
 			}),
+			...(userPlugins ?? []),
 		],
 		resolve: {
 			extensions: ['.tsx', '.ts', '.jsx', '.js', '.json', '.mjs', '.mts'],
@@ -117,7 +120,9 @@ export async function createViteConfig({
 					warn(warning)
 				},
 			},
+			...build,
 		},
+		...restUserConfig,
 	})
 }
 

@@ -31,6 +31,13 @@ yarn add @atomazing-org/vite-config
 pnpm add @atomazing-org/vite-config
 ```
 
+If you plan to use PWA features you will also need to install Workbox
+
+```bash
+	pnpm add workbox-build workbox-window
+```
+
+
 > **Note:** This package includes only the core functionality.  
 > You must also install the required **peer dependencies** to ensure proper integration with MUI and Emotion.
 
@@ -48,6 +55,13 @@ export default createViteConfig({
 	moduleFederationOptions: {
 		name: '{appName}',
 	},
+	// you also can use default vite configuration
+	server: {
+		port: 5000,
+		proxy: {
+			// proxy settings
+			}
+		}
 })
 ```
 
@@ -57,7 +71,6 @@ createViteConfig options
 enableDevPwa, // Enable to test PWA functionality in dev, but it may slow down HMR.
 enableHttps, // Enable https necessary for work PWA on dev
 moduleFederationOptions,
-port,
 ```
 
 
