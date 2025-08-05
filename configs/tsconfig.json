@@ -25,7 +25,7 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
-		"types": ["@atomazing-org/vite-config/registerSW"],
+		"types": ["@atomazing-org/vite-config/registerSW","node","vite/client","vitest/globals"],
 		"paths": {
 			"@*": ["${configDir}/src/*"]
 		}
