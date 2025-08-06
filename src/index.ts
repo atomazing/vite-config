@@ -70,7 +70,6 @@ export async function createViteConfig({
 		plugins.push(
 			federation({
 				filename: 'remoteEntry.js',
-				shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
 				...moduleFederationOptions,
 			}),
 		)
