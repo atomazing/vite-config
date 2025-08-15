@@ -17,6 +17,7 @@ type Args = {
 	enableHttps?: boolean
 	moduleFederationOptions?: Partial<ModuleFederationOptions> & Pick<ModuleFederationOptions, 'name'>
 	enableI8n?: boolean
+	checkTypescript?: boolean
 } & UserConfig
 
 // https://vitejs.dev/config/
@@ -24,6 +25,7 @@ export async function createViteConfig({
 	enableDevPwa = false,
 	enableHttps = false,
 	enableI8n = false,
+	checkTypescript = true,
 	moduleFederationOptions,
 	...userConfig
 }: Args) {
@@ -87,6 +89,14 @@ export async function createViteConfig({
 		console.log('🛠️ @lingui/vite-plugin is connected ')
 	}
 
+	if (checkTypescript) {
+		plugins.push(
+			checker({
+				typescript: true,
+			}),
+		)
+	}
+
 	return defineConfig({
 		test: {
 			globals: true,
@@ -100,9 +110,7 @@ export async function createViteConfig({
 				},
 			}),
 			tsconfigPaths(),
-			checker({
-				typescript: true,
-			}),
+
 			...(userPlugins ?? []),
 		],
 		resolve: {
