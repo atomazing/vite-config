@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 import { defineConfig, PluginOption, UserConfig } from 'vite'
 import { federation } from '@module-federation/vite'
-import react from '@vitejs/plugin-react'
+import react, { Options as ReactPluginOptions } from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import { qrcode } from 'vite-plugin-qrcode'
 import defaultWorkboxConfig from '../configs/workbox.config'
@@ -16,6 +16,7 @@ type Args = {
 	enableDevPwa?: boolean
 	enableHttps?: boolean
 	moduleFederationOptions?: Partial<ModuleFederationOptions> & Pick<ModuleFederationOptions, 'name'>
+	reactPluginOptions?: ReactPluginOptions
 	enableI8n?: boolean
 	checkTypescript?: boolean
 } & UserConfig
@@ -27,6 +28,7 @@ export async function createViteConfig({
 	enableI8n = false,
 	checkTypescript = true,
 	moduleFederationOptions,
+	reactPluginOptions,
 	...userConfig
 }: Args) {
 	const manifest = await findTsModule('manifest.ts')
@@ -108,6 +110,7 @@ export async function createViteConfig({
 				babel: {
 					plugins: babelPlugins,
 				},
+				...reactPluginOptions
 			}),
 			tsconfigPaths(),
 
