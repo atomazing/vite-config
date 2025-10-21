@@ -1,123 +1,104 @@
-# 📚 Table of Contents
+## Описание
 
 1. [Introduction](#1-introduction)
 2. [Installation](#2-installation)
 3. [Usage](#3-usage)
 
-## 1. Introduction
+## Описание
 
-### 🔧 What’s Included
+Набор конфигов и плагинов для Vite под React-приложения c готовой интеграцией:
+- **PWA** (автообнаружение `manifest.ts`, поддержка `workbox` и QR в dev)
+- **Module Federation** для микрофронтендов
+- **HTTPS** (самоподписанный SSL в dev)
+- **i18n** через `@lingui/vite-plugin`
+- **Проверка TypeScript** через `vite-plugin-checker`
+- **React** (`@vitejs/plugin-react`) с Emotion и поддержкой
 
-Provides a vite configuration with PWA, module-federation and i8n support. Also included typescript configuration.
-
----
-
-## 2. Installation
-
-To install `@atomazing-org/vite-config`, use your preferred package manager:
+## Установка
 
 ```bash
 # npm
 npm install @atomazing-org/vite-config
-```
 
-```bash
 # yarn
 yarn add @atomazing-org/vite-config
-```
 
-```bash
 # pnpm
 pnpm add @atomazing-org/vite-config
 ```
 
+> Пакет подключает плагины автоматически, однако их peer-зависимости должны быть установлены в вашем проекте (React, Lingui при использовании i18n и т.д.).
 
-> **Note:** This package includes only the core functionality.  
-> You must also install the required **peer dependencies** to ensure proper integration with MUI and Emotion.
+## Конфигурация
 
-## 3. Usage
+Создайте или отредактируйте `vite.config.ts`:
 
-### Vite config
-
-After installing the package, a `vite.config.ts` file will be created in the root directory if it did not exist before. If you already have a `vite.config.ts` file, add the following to it:
+### Пример: базовая конфигурация
 
 ```ts
-import { createViteConfig } from '@atomazing-org/vite-config'
-
-// https://vitejs.dev/config/
 export default createViteConfig({
-	moduleFederationOptions: {
-		name: '{appName}',
-	},
-	// you also can use default vite configuration
-	server: {
-		port: 5000,
-		proxy: {
-			// proxy settings
-			}
-		}
+    server: { port: 5173 },
 })
 ```
 
-createViteConfig options
+### Пример: Module Federation (host)
 
 ```ts
-enableDevPwa, // Enable to test PWA functionality in dev, but it may slow down HMR.
-enableHttps, // Enable https necessary for work PWA on dev
-moduleFederationOptions,
+export default createViteConfig({
+    moduleFederationOptions: {
+        name: 'host',
+        remotes: {
+            remote: 'remote@https://example.com/remoteEntry.js',
+        },
+        shared: { react: { singleton: true }, 'react-dom': { singleton: true } },
+    },
+})
 ```
 
+### Пример: Module Federation (remote)
 
-You can create a `manifest.ts` required for PWA to work with command:
+```ts
+export default createViteConfig({
+    moduleFederationOptions: {
+        name: 'remote',
+        exposes: {
+            './mount': './src/mount.tsx',
+        },
+    },
+})
+```
+
+## PWA: manifest и Workbox
+
+Создать `manifest.ts` можно командой:
 
 ```bash
-# npm
 npx @atomazing-org/vite-config create-manifest
 ```
 
-You can also create your own `workbox.config.ts` or the default one will be used.
+Можно также создать свой `workbox.config.ts`. Если файл не найден, используется дефолтная конфигурация из пакета.
 
-### Module Federation
+## Конфигурация TypeScript
 
+Подключите общий `tsconfig`:
 
-If you want to use your application as a host, you will need to specify name and remotes modules. For example:
-
-```ts
-export default createViteConfig({
-	moduleFederationOptions: {
-		name: 'host',
-		remotes: {
-			remote: {
-				type: 'module',
-				name: 'remoteModule',
-				entry: 'https://[...]/remoteEntry.js',
-			},
-			shared: [...librariesToShare],
-		},
-	},
-})
-```
-If you want to use your application as a remote module, you will need to specify name and exposes components. For example:
-
-```ts
-export default createViteConfig({
-	moduleFederationOptions: {
-		name: 'remote',
-		exposes: {
-				'./mount': './src/mount.tsx',
-			},
-	},
-})
+```json
+{
+    "extends": "@atomazing-org/vite-config/configs/tsconfig.json"
+}
 ```
 
-By default, `shared` are already set for `react` and `react-dom`.
-Filename by default is `remoteEntry.js`
+## Экспорты из пакета
 
+Помимо `createViteConfig`, повторно экспортируются:
+- `workbox-build`
+- `workbox-window`
+- `vite-plugin-pwa`
 
-### Typescript config
+Это позволяет использовать их типы и утилиты напрямую из пакета.
 
-After installing the package, a `tsconfig.json` file will be created in the root directory if it did not exist before. If you already have a `tsconfig.json` file, add the following to it:
+## Примечания
 
-```ts
-	"extends": "@atomazing-org/vite-config/configs/tsconfig.json",
-```
+- QR-код для PWA dev генерируется только при `enableDevPwa: true` и доступен для локальных IP `192.168.0.*`.
+- HTTPS активируется плагином `@vitejs/plugin-basic-ssl` при `enableHttps: true`.
+- Логирование инициализации конфигурации структурировано по блокам для удобства диагностики.

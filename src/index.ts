@@ -21,7 +21,55 @@ type Args = {
 	checkTypescript?: boolean
 } & UserConfig
 
-// https://vitejs.dev/config/
+/**
+ * Создает конфигурацию Vite с предустановленными плагинами и настройками
+ * 
+ * Эта функция автоматически настраивает популярные плагины для React приложений:
+ * - PWA поддержка с автоматическим обнаружением manifest.ts
+ * - Module Federation для микрофронтендов
+ * - HTTPS с самоподписанным сертификатом
+ * - Интернационализация с Lingui
+ * - TypeScript проверка
+ * - React с Emotion и поддержкой TypeScript путей
+ * 
+ * @param {Args} config - Объект конфигурации с опциональными параметрами
+ * @param {boolean} [config.enableDevPwa=false] - Включить PWA в режиме разработки. Показывает QR код для локальных IP адресов
+ * @param {boolean} [config.enableHttps=false] - Включить HTTPS с самоподписанным сертификатом
+ * @param {boolean} [config.enableI8n=false] - Включить поддержку интернационализации с Lingui
+ * @param {boolean} [config.checkTypescript=true] - Включить проверку TypeScript во время разработки
+ * @param {Partial<ModuleFederationOptions> & Pick<ModuleFederationOptions, 'name'>} [config.moduleFederationOptions] - Настройки Module Federation для микрофронтендов
+ * @param {ReactPluginOptions} [config.reactPluginOptions] - Дополнительные опции для React плагина
+ * @param {UserConfig} config - Все остальные опции Vite конфигурации (plugins, build, resolve и т.д.)
+ * 
+ * @returns {Promise<UserConfig>} Полная конфигурация Vite
+ * 
+ * @example
+ * ```typescript
+ * // Базовая конфигурация
+ * export default createViteConfig({
+ *   // ваши настройки
+ * })
+ * 
+ * // С PWA и HTTPS
+ * export default createViteConfig({
+ *   enableDevPwa: true,
+ *   enableHttps: true,
+ *   // другие настройки
+ * })
+ * 
+ * // С Module Federation
+ * export default createViteConfig({
+ *   moduleFederationOptions: {
+ *     name: 'myApp',
+ *     remotes: {
+ *       remoteApp: 'remoteApp@http://localhost:3001/remoteEntry.js'
+ *     }
+ *   }
+ * })
+ * ```
+ * 
+ * @see {@link https://vitejs.dev/config/} - Официальная документация Vite
+ */
 export async function createViteConfig({
 	enableDevPwa = false,
 	enableHttps = false,
@@ -31,20 +79,24 @@ export async function createViteConfig({
 	reactPluginOptions,
 	...userConfig
 }: Args) {
+	// Инициализация конфигурации
+	console.log('🚀 [ViteConfig] Инициализация конфигурации Vite...')
+	
 	const manifest = await findTsModule('manifest.ts')
 	const workboxConfig = await findTsModule('workbox.config.ts')
 
 	const { plugins: userPlugins, build, ...restUserConfig } = userConfig
 	const plugins: PluginOption[] = []
 	const babelPlugins: string[] = ['@emotion/babel-plugin']
+	
 
+	// PWA конфигурация
 	if (manifest) {
-		console.log('🔧 Detected manifest.ts')
-		if (workboxConfig) {
-			console.log('🔧 Detected workbox.config.ts')
-		} else {
-			console.log('🔧 Default workbox.config.ts should be used')
-		}
+		console.log('📱 [PWA] Обнаружен manifest.ts - инициализация PWA')
+		
+		const workboxSource = workboxConfig ? 'custom' : 'default'
+		console.log(`⚙️  [PWA] Workbox конфигурация: ${workboxSource}`)
+		
 		// https://vite-pwa-org.netlify.app/
 		plugins.push(
 			VitePWA({
@@ -60,6 +112,7 @@ export async function createViteConfig({
 			}),
 		)
 		if (enableDevPwa) {
+			console.log('📲 [PWA] QR код активирован для локальных IP адресов')
 			plugins.push(
 				qrcode({
 					filter: url =>
@@ -67,9 +120,12 @@ export async function createViteConfig({
 				}),
 			)
 		}
-		console.log('🛠️ vite-plugin-pwa is connected')
+		console.log('✅ [PWA] vite-plugin-pwa успешно подключен')
+	} else {
+		console.log('ℹ️  [PWA] manifest.ts не найден - PWA отключен')
 	}
 
+	// Module Federation конфигурация
 	if (moduleFederationOptions) {
 		plugins.push(
 			federation({
@@ -77,29 +133,44 @@ export async function createViteConfig({
 				...moduleFederationOptions,
 			}),
 		)
-		console.log('🛠️ @module-federation/vite is connected')
+		console.log('✅ [ModuleFederation] @module-federation/vite успешно подключен')
+	} else {
+		console.log('ℹ️  [ModuleFederation] Module Federation не настроен')
 	}
 
+	// HTTPS конфигурация
 	if (enableHttps) {
+		console.log('🔒 [HTTPS] Активация самоподписанного SSL сертификата')
 		plugins.push(basicSsl())
-		console.log('🛠️ @vitejs/plugin-basic-ssl is connected ')
+		console.log('✅ [HTTPS] @vitejs/plugin-basic-ssl успешно подключен')
+	} else {
+		console.log('ℹ️  [HTTPS] HTTPS отключен - используется HTTP')
 	}
 
+	// Интернационализация (i18n)
 	if (enableI8n) {
+		console.log('🌍 [i18n] Инициализация интернационализации с Lingui')
 		babelPlugins.push('@lingui/babel-plugin-lingui-macro')
 		plugins.push(lingui())
-		console.log('🛠️ @lingui/vite-plugin is connected ')
+		console.log('✅ [i18n] @lingui/vite-plugin успешно подключен')
+	} else {
+		console.log('ℹ️  [i18n] Интернационализация отключена')
 	}
 
 	if (checkTypescript) {
+		console.log('🔍 [TypeScript] Активация проверки типов во время разработки')
 		plugins.push(
 			checker({
 				typescript: true,
 			}),
 		)
+		console.log('✅ [TypeScript] vite-plugin-checker успешно подключен')
+	} else {
+		console.log('ℹ️  [TypeScript] Проверка типов отключена')
 	}
 
-	return defineConfig({
+	// Финальная конфигурация
+	const finalConfig = defineConfig({
 		test: {
 			globals: true,
 		},
@@ -135,6 +206,9 @@ export async function createViteConfig({
 		},
 		...restUserConfig,
 	})
+	console.log('🎉 [ViteConfig] Конфигурация Vite успешно создана!')
+	
+	return finalConfig
 }
 
 export * from 'vite-plugin-pwa'
