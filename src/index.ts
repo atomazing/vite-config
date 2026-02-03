@@ -11,6 +11,7 @@ import checker from 'vite-plugin-checker'
 import { findTsModule } from './helpers'
 import { ModuleFederationOptions } from '@module-federation/vite/lib/utils/normalizeModuleFederationOptions'
 import { lingui } from '@lingui/vite-plugin'
+import emotionBabelPlugin from '@emotion/babel-plugin'
 
 type Args = {
 	enableDevPwa?: boolean
@@ -87,7 +88,7 @@ export async function createViteConfig({
 
 	const { plugins: userPlugins, build, ...restUserConfig } = userConfig
 	const plugins: PluginOption[] = []
-	const babelPlugins: string[] = ['@emotion/babel-plugin']
+	const babelPlugins: any[] = [emotionBabelPlugin]
 	
 
 	// PWA конфигурация
