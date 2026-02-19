@@ -87,7 +87,7 @@ export async function createViteConfig({
 
 	const { plugins: userPlugins, build, ...restUserConfig } = userConfig
 	const plugins: PluginOption[] = []
-	const babelPlugins: string[] = ['@emotion/babel-plugin']
+	const babelPlugins = ['@emotion/babel-plugin']
 	
 
 	// PWA конфигурация

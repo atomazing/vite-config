@@ -1,0 +1,3 @@
+{
+  "extends": "@atomazing-org/vite-config/configs/tsconfig.json"
+}

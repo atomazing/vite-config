@@ -1,0 +1,74 @@
+:root {
+	--remote-surface: #ffffff;
+	--remote-border: #cddaf0;
+	--remote-text: #10233f;
+	--remote-muted: #4a5f81;
+	--remote-accent: #0b5fbe;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.remote-shell {
+	height: 100%;
+	display: grid;
+	gap: 0.75rem;
+	background: linear-gradient(165deg, #f7fbff 0%, #ebf4ff 100%);
+	border: 1px solid #d8e5f8;
+	border-radius: 14px;
+	padding: 0.9rem;
+	color: var(--remote-text);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.eyebrow {
+	margin: 0;
+	font-size: 0.74rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--remote-accent);
+}
+
+h1,
+h2 {
+	margin: 0;
+}
+
+h1 {
+	font-size: 1.25rem;
+}
+
+h2 {
+	font-size: 1rem;
+}
+
+p {
+	margin: 0.35rem 0 0;
+	color: var(--remote-muted);
+}
+
+.remote-panel {
+	background: var(--remote-surface);
+	border: 1px solid var(--remote-border);
+	border-radius: 11px;
+	padding: 0.7rem 0.8rem;
+	display: grid;
+	gap: 0.5rem;
+}
+
+code {
+	width: fit-content;
+	font-family: Consolas, 'Courier New', monospace;
+	background: #eaf2ff;
+	border-radius: 8px;
+	padding: 0.18rem 0.45rem;
+}
+
+ul {
+	margin: 0;
+	padding-left: 1rem;
+	display: grid;
+	gap: 0.35rem;
+}
