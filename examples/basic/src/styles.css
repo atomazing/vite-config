@@ -1,0 +1,151 @@
+:root {
+	--bg: #f3f6fb;
+	--surface: #ffffff;
+	--border: #d6dfec;
+	--text: #0f203b;
+	--muted: #4d5f7b;
+	--accent: #1f6feb;
+	--good-bg: #e8f5ea;
+	--good-text: #1a6c37;
+	--off-bg: #f5e8e8;
+	--off-text: #9c2c2c;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: radial-gradient(circle at top right, #d9e8ff 0%, #f3f6fb 40%);
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	color: var(--text);
+}
+
+#root {
+	min-height: 100vh;
+}
+
+.basic-shell {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 2rem 1rem 3rem;
+	display: grid;
+	gap: 1rem;
+}
+
+.hero {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 1.2rem 1.4rem;
+	box-shadow: 0 6px 24px rgba(16, 34, 64, 0.08);
+}
+
+.eyebrow {
+	margin: 0;
+	color: var(--accent);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+h1,
+h2 {
+	margin: 0;
+}
+
+h1 {
+	font-size: 1.75rem;
+}
+
+h2 {
+	font-size: 1.05rem;
+}
+
+p {
+	margin: 0.45rem 0 0;
+	color: var(--muted);
+	line-height: 1.45;
+}
+
+.panel {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 1rem 1.2rem;
+}
+
+.list {
+	margin: 0.65rem 0 0;
+	padding-left: 1.1rem;
+	display: grid;
+	gap: 0.4rem;
+}
+
+.feature-grid,
+.file-grid {
+	margin-top: 0.75rem;
+	display: grid;
+	gap: 0.7rem;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.feature-card,
+.file-card {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 0.75rem;
+	background: #fbfdff;
+}
+
+.feature-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+
+.badge {
+	display: inline-block;
+	border-radius: 999px;
+	font-size: 0.7rem;
+	font-weight: 700;
+	padding: 0.15rem 0.55rem;
+}
+
+.badge-on {
+	background: var(--good-bg);
+	color: var(--good-text);
+}
+
+.badge-off {
+	background: var(--off-bg);
+	color: var(--off-text);
+}
+
+.two-col {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.code-list code,
+.file-card code {
+	font-family: Consolas, 'Courier New', monospace;
+	color: var(--text);
+	background: #edf2fb;
+	border-radius: 8px;
+	padding: 0.15rem 0.35rem;
+}
+
+@media (max-width: 700px) {
+	.basic-shell {
+		padding: 1rem 0.75rem 2rem;
+	}
+
+	h1 {
+		font-size: 1.4rem;
+	}
+}
