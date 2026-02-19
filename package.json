@@ -1,6 +1,6 @@
 {
 	"name": "@atomazing-org/vite-config",
-	"version": "0.2.8",
+	"version": "0.2.10",
 	"private": false,
 	"description": "A library providing a vite configuration with including PWA and MF supports.",
 	"author": "RatzNikita + MarkSinD",
@@ -30,6 +30,7 @@
 		"*.d.ts",
 		"dist",
 		"configs",
+		"examples/assets",
 		"README.md"
 	],
 	"publishConfig": {
@@ -42,7 +43,12 @@
 	"scripts": {
 		"build": "tsup",
 		"prepublishOnly": "npm run build",
-		"postinstall": "node ./dist/bin/setup.mjs"
+		"postinstall": "node -e \"const fs=require('fs');const {spawnSync}=require('child_process');const candidate=fs.existsSync('./dist/bin/setup.mjs')?'./dist/bin/setup.mjs':(fs.existsSync('./bin/setup.mjs')?'./bin/setup.mjs':null);if(!candidate)process.exit(0);const r=spawnSync(process.execPath,[candidate],{stdio:'inherit'});process.exit(typeof r.status==='number'?r.status:1);\"",
+		"check:examples:build": "node ./scripts/check-examples.mjs build",
+		"check:examples:types": "node ./scripts/check-examples.mjs types",
+		"check:examples:smoke": "node ./scripts/smoke-examples.mjs",
+		"check:examples": "node ./scripts/check-examples.mjs all",
+		"capture:examples:screenshots": "node ./scripts/capture-example-screenshots.mjs"
 	},
 	"peerDependencies": {
 		"workbox-build": "7.3.0",

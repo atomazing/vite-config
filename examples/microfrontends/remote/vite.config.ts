@@ -6,22 +6,19 @@ const DEV_ENABLE_HTTPS = isDevHost // Enable HTTPS with npm run dev:host
 const DEV_ENABLE_PWA = false
 
 export default createViteConfig({
-  server: {
-    port: 3001,
-  },
-  moduleFederationOptions: {
-    name: 'remote',
+	server: {
+		port: 3001,
+	},
+	moduleFederationOptions: {
+		name: 'remote',
 		filename: 'remoteEntry.js',
 		exposes: {
 			'./mount': './src/mount.tsx',
 		}
-  },
+	},
 	enableDevPwa: DEV_ENABLE_PWA,
 	enableHttps: DEV_ENABLE_HTTPS,
 	enableI8n: false,
-	server: {
-		port: 3001,
-	},
 	preview: {
 		port: 3001,
 	},
